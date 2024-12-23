@@ -1,0 +1,7 @@
+SELECT g.Name, COUNT(r.Reservation_ID) AS ReservationCount
+FROM Guest g, Reservation r, Room ro, Hotel h
+WHERE g.Guest_ID = r.Guest_ID
+AND r.Room_ID = ro.Room_ID
+AND ro.Hotel_ID = h.Hotel_ID
+AND h.Rating = 5
+GROUP BY g.Name;
