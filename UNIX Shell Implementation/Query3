@@ -1,0 +1,16 @@
+SELECT
+    'Name: ' || S.Name || ', Position: ' || S.Position || ', Salary: ' || F.Salary || ', Hotel: ' || H.Name AS "High-Paying Full-Time Sta>
+FROM
+    Staff S, FullTime_Staff F, Hotel H
+WHERE
+    S.Staff_ID = F.Staff_ID
+    AND S.Hotel_ID = H.Hotel_ID
+    AND F.Salary > (
+        SELECT AVG(FT.Salary)
+        FROM FullTime_Staff FT
+        WHERE FT.Staff_ID IN (
+            SELECT Staff_ID
+            FROM Staff
+            WHERE Hotel_ID = S.Hotel_ID
+        )
+    );
