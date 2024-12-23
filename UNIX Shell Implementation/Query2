@@ -1,0 +1,10 @@
+SELECT Hotel_ID, Name
+FROM Hotel
+MINUS
+SELECT Hotel_ID, Name
+FROM Hotel
+WHERE Hotel_ID IN (
+    SELECT Hotel_ID
+    FROM Staff
+    WHERE Staff_ID IN (SELECT Staff_ID FROM PartTime_Staff)
+);
