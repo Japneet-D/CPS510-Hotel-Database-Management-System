@@ -1,0 +1,7 @@
+SELECT Staff_ID, Name, 'Full-Time' AS EmploymentType
+FROM Staff
+WHERE Staff_ID IN (SELECT Staff_ID FROM FullTime_Staff)
+UNION
+SELECT Staff_ID, Name, 'Part-Time' AS EmploymentType
+FROM Staff
+WHERE Staff_ID IN (SELECT Staff_ID FROM PartTime_Staff);
